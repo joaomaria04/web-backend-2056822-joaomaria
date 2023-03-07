@@ -15,7 +15,8 @@ else if (imc > 30)
 
 
 }
-calcular_indice_massa_corporal(150, 1.87);
+
+//calcular_indice_massa_corporal(150, 1.87);
 
 function reverterString(str){
     var splittedStr = str.split(" ");
@@ -30,3 +31,4 @@ function reverterString(str){
 }
 var str = "Hoje é Domingo";
 var rev = reverterString(str);
+console.log(rev);
