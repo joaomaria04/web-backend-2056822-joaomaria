@@ -116,9 +116,38 @@ function caixa_quadrada(tamanho){   //Exercício 8
 
 //console.log(caixa_quadrada(10));
 
-function notas(){
     var estudante_1 = {nome: "João", nota:18};
+    var estudante_2 = {nome: "Rui", nota:15};
+    var estudante_3 = {nome: "Cristina", nota:19};
+    var estudante_4 = {nome: "Roberto", nota:20};
     var lista_estudantes = [];
-    lista_estudantes.push(estudante_1);
-    var nota = lista_estudantes[1].nota;
+    lista_estudantes.push(estudante_1, estudante_2, estudante_3, estudante_4);
+
+
+function max(array) {
+    var m = array[0].nota;
+    var bestStudent = array[0];
+    for (let i = 0; i < array.length; i++) {
+        if (array[i].nota > m) {
+            m = array[i].nota;
+            bestStudent = array[i];
+        }
+    }
+    return bestStudent;
 }
+
+function min(array) {
+    var m = array[0].nota;
+    var worstStudent = array[0];
+    for (let i = 0; i < array.length; i++) {
+        if (array[i].nota < m) {
+            m = array[i].nota;
+            worstStudent = array[i];
+        }
+    }
+    return worstStudent;
+}
+
+
+console.log(max(lista_estudantes));
+console.log(min(lista_estudantes))
