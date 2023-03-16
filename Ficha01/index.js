@@ -7,6 +7,9 @@ function calculateGrade(gp, gt){
     }
 }
 
+//calculateGrade(12,16);
+
+
 function numeromes(num_mes) {
     switch (num_mes) {
         case 1:
