@@ -116,6 +116,7 @@ function caixa_quadrada(tamanho){   //Exercício 8
 
 //console.log(caixa_quadrada(10));
 
+<<<<<<< HEAD
 var estudante_1 = {nome: "João", nota:18};
 var estudante_2 = {nome: "Rui", nota:15};
 var estudante_3 = {nome: "Cristina", nota:19};
@@ -172,6 +173,64 @@ for (let i = 0; i < lista_estudantes.length; i++){
     }
 }
 return estudante;
+=======
+    var estudante_1 = {nome: "João", nota:18};
+    var estudante_2 = {nome: "Rui", nota:15};
+    var estudante_3 = {nome: "Cristina", nota:19};
+    var estudante_4 = {nome: "Roberto", nota:20};
+    var estudante_5 = {nome: "Henrique", nota:8};
+
+    var lista_estudantes = [];
+    lista_estudantes.push(estudante_1, estudante_2, estudante_3, estudante_4, estudante_5);
+
+
+function max(array) {
+    var m = array[0].nota;
+    var bestStudent = array[0];
+    for (let i = 0; i < array.length; i++) 
+    {
+        if (array[i].nota > m) {
+            m = array[i].nota;
+            bestStudent = array[i];
+        }
+    }
+    return bestStudent;
+}
+
+function min(array) {
+    var m = array[0].nota;
+    var worstStudent = array[0];
+    for (let i = 0; i < array.length; i++) {
+        if (array[i].nota < m) {
+            m = array[i].nota;
+            worstStudent = array[i];
+        }
+    }
+    return worstStudent;
+}
+
+function media(lista_estudantes) {
+    var soma = 0;
+    for (let i = 0; i < lista_estudantes.length; i++){
+        soma += lista_estudantes[i].nota;
+    }
+    var media_notas = soma / lista_estudantes.length;
+    return media_notas;
+}
+
+function closestToAverage(lista_estudantes){
+    var avg = media(lista_estudantes);
+    var min = avg;
+    var estudante = lista_estudantes[0];
+    for (let i = 0; i < lista_estudantes.length; i++){
+        var diff = Math.abs(avg - lista_estudantes[i].nota);
+        if(diff < min){
+            min = diff;
+            estudante = lista_estudantes[i];
+        }
+    }
+    return estudante;
+>>>>>>> bdf0f3ce0ab26bcf83a98e1f21d39b6e115e714c
 }
 
 
@@ -180,6 +239,7 @@ console.log(("O aluno com a pior nota é: "),min(lista_estudantes));
 
 
 function notas_negativas(lista_estudantes){
+<<<<<<< HEAD
 var piores_notas = 0;
 for (i = 0; i < lista_estudantes.length; i++){
 if (lista_estudantes[i].nota < 9.5){
@@ -187,6 +247,15 @@ if (lista_estudantes[i].nota < 9.5){
 }
 }
 return piores_notas;
+=======
+    var piores_notas = 0;
+    for (i = 0; i < lista_estudantes.length; i++){
+    if (lista_estudantes[i].nota < 9.5){
+        piores_notas++;
+    }
+}
+    return piores_notas;
+>>>>>>> bdf0f3ce0ab26bcf83a98e1f21d39b6e115e714c
 }
 
 console.log(notas_negativas(lista_estudantes));
