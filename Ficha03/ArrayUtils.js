@@ -33,12 +33,11 @@ module.exports = {
     return media_notas;
     },
     indexOf : function (array, value) {
-        var index = -1;
         for (let i = 0; i < array.length; i++) {
             if(array[i] == value)
-            index = i;
+            return i;
         }
-        return index;
+        return -1;
     },
     subArray : function(array, startindex, endindex) {
         var sub = [];
@@ -46,6 +45,34 @@ module.exports = {
             sub.push(array[i]);
         }
         return sub;
-    }
+    },
+    isSameLength : function(array, array2) {
+        if (array.length == array2.length) {
+            return true;
+        }else{
+            return false;
+        }
+    },
+    reverse : function(array) {
+        ultimoElemento = array[0]
+        for (i = 0; i < array.length; i--) {
+            return array;
+        }
+    },
+    swap : function(array, i1, i2) {
+        var tmp = array[i1];
+        array[i1] = array[i2]; 
+        array[i2]= tmp;
+        return array;
+    },
+    contains : function (array, value) {
+        return this.indexOf(array, value) != -1;
+    },
+    concatenate : function(array, array2) {
+        for (let i = 0; i < array.length; i++) {
+            array.push(array2[i]);
+        }
+        return array;
+    } 
 };
 
