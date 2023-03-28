@@ -5,7 +5,18 @@ class Emitter {
 }
 
 Emitter.prototype.on = function(){
-    
+    if(this.events[type] == undefined){
+        this.events[type] = [];
+    }
+    this.events[type].push(listener);
+}
+
+Emitter.prototype.emit = function(type){
+    if(this.events[type] != undefined){
+        this.events[type].forEach(listener => {
+            listener();
+    });  
+  }
 }
 
 module.exports = Emitter;
