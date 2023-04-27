@@ -1,5 +1,6 @@
 
 
+/*
 var str = '{"name":"Ana","age":38,"gender":"F"}';
 var personObj = JSON.parse(str);
 
