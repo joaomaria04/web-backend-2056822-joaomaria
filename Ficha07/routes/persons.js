@@ -18,4 +18,13 @@ router.get('/', function(req, res, next) {
     })
 });
 
+router.get('/:id', function(req, res, next) {
+    var id = req.params.id;s 
+    connection.query("SELECT * FROM persons", (err, results, fields) =>{
+        res.send(results);
+        console.log("GET");
+    })
+});
+
+
 module.exports = router;
