@@ -19,10 +19,19 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:id', function(req, res, next) {
-    var id = req.params.id;s 
-    connection.query("SELECT * FROM persons", (err, results, fields) =>{
+    var id = req.params.id; 
+    connection.query("SELECT * FROM persons WHERE id = ?" , id, (err, results, fields) =>{
         res.send(results);
         console.log("GET");
+    })
+});
+
+
+
+router.delete('/:id', function(req, res, next) {
+    var id = req.params.id; 
+    connection.query("DELETE * FROM persons WHERE id = ?" , id, (err, results, fields) =>{
+        res.send(results);
     })
 });
 
