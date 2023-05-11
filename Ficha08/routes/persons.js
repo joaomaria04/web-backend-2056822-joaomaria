@@ -19,26 +19,7 @@ var connection = mysql.createConnection({
  *         description: Returns a mysterious string.
  */
 
-/** 
-* @swagger 
-* /person/{id};
-*       get:
-*       tags:
-*           - Person
-*         summary: Reads a single person by id
-*         description: Returns a single person
-*         produces:
-*               - application/json
-*         parameters:
-*               - name: id
-*                 description: Person´s id
-*                 in: path
-*                 required: true
-*                 type: int
-*              responses:
-*                   200:
-*                       description: Returned sucessfully
-*/
+
 
  /**
    * @swagger
