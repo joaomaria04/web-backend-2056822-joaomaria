@@ -9,6 +9,52 @@ var connection = mysql.createConnection({
     database: 'ficha07'
 });
 
+/**
+ * @openapi
+ * /:
+ *   get:
+ *     description: Welcome to swagger-jsdoc!
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
+
+/** 
+* @swagger 
+* /person/{id};
+*       get:
+*       tags:
+*           - Person
+*         summary: Reads a single person by id
+*         description: Returns a single person
+*         produces:
+*               - application/json
+*         parameters:
+*               - name: id
+*                 description: Person´s id
+*                 in: path
+*                 required: true
+*                 type: int
+*              responses:
+*                   200:
+*                       description: Returned sucessfully
+*/
+
+ /**
+   * @swagger
+   * /persons:
+   *   get: 
+   *     tags:
+   *       - Person
+   *     summary:
+   *       description: Shows all users!
+   *         produces: 
+   *       - application/json
+   *         responses:
+   *                200:
+   *         description: Returned sucessfully
+   *      
+   */
 
 
 /* GET users listing. */
