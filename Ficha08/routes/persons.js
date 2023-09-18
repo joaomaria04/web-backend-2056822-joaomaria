@@ -1,4 +1,5 @@
 var express = require('express');
+//
 var mysql = require('mysql');
 var router = express.Router();
 
@@ -10,94 +11,143 @@ var connection = mysql.createConnection({
 });
 
 /**
- * @openapi
- * /:
+ * @swagger
+ * /persons:
  *   get:
- *     description: Welcome to swagger-jsdoc!
- *     responses:
- *       200:
- *         description: Returns a mysterious string.
+ *      tags: 
+ *          - Person
+ *      summary: 
+ *      description: Shows all users!
+ *      produces: 
+ *          - application/json
+ *      responses:
+ *          200:
+ *              description: Returned sucessfully.
  */
-
-
-
- /**
-   * @swagger
-   * /persons:
-   *   get: 
-   *     tags:
-   *       - Person
-   *     summary:
-   *       description: Shows all users!
-   *         produces: 
-   *       - application/json
-   *         responses:
-   *                200:
-   *         description: Returned sucessfully
-   *      
-   */
-
-
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    connection.query("SELECT * FROM persons", (err, results, fields) =>{
+    connection.query("SELECT * FROM persons", (err, results, fields)=>{
         res.send(results);
     })
+    //res.send('respond with a resource from PERSONS');
 });
-
+/**
+ * @swagger
+ * /persons/{id}:
+ *   get:
+ *      tags: 
+ *          - Person
+ *      summary: 
+ *      description: Choose the person you wanna see the info!
+ *      produces: 
+ *          - application/json
+ *      parameters:
+ *          - name: id
+ *            description: Person's ID
+ *            in: path
+ *            required: true
+ *            type: string
+ *      responses:
+ *          200:
+ *              description: Returned sucessfully.
+ */
+//VAI BUSCAR IDS DEFINIDOS EM SQL
 router.get('/:id', function(req, res, next) {
-    var id = req.params.id; 
-    connection.query("SELECT * FROM persons WHERE id = ?" , id, (err, results, fields) =>{
+    connection.query('SELECT * FROM `persons` WHERE `id` = ?', [req.params.id], (err, results, fields)=>{
         res.send(results);
-        console.log("GET");
     })
+  
 });
 
-
-
+/**
+ * @swagger
+ * /persons/{id}:
+ *   delete:
+ *      tags: 
+ *          - Person
+ *      summary: 
+ *      description: Choose the person so it can be deleted!
+ *      produces: 
+ *          - application/json
+ *      parameters:
+ *          - name: id
+ *            description: Person's ID
+ *            in: path
+ *            required: true
+ *            type: string
+ *      responses:
+ *          200:
+ *              description: Returned sucessfully.
+ */
+//Elimina o utilizador escolhido
 router.delete('/:id', function(req, res, next) {
-    var id = req.params.id; 
-    connection.query("DELETE FROM persons WHERE id = ?" , id, (err, results, fields) =>{
-        if (results.affectedRows == 0) {
-            res.status(404).end("id" + id+ "not found")
-        }
+    connection.query('DELETE FROM `persons` WHERE `id` = ?', [req.params.id], (err, results, fields)=>{
         res.send(results);
     })
+  
 });
 
-router.delete('/', function(req, res, next) {
-    var person = req.body.id; 
-    connection.query("DELETE FROM persons WHERE id = ?" , id, (err, results, fields) =>{
-        res.send(results);
-    })
-});
-
+/**
+ * @swagger
+ * /persons/{age}/{profession}:
+ *   get:
+ *      tags: 
+ *          - Person
+ *      summary: 
+ *      description: Choose the person's age and profession!
+ *      produces: 
+ *          - application/json
+ *      parameters:
+ *          - name: age
+ *            description: Person's age 
+ *            in: path
+ *            required: true
+ *            type: string
+ *      responses:
+ *          200:
+ *              description: Returned sucessfully.
+ */
+// Mostra todos os detalhes de uma pessoa atraves do ID
 router.get('/:age/:profession', function(req, res, next) {
-    var age = req.params.age; 
-    var profession = req.params.profession; 
-    connection.query("SELECT * FROM persons WHERE age = ? AND profession = ?" ,[age, profession], (err, results, fields) =>{
+    connection.query('SELECT * FROM `persons` WHERE `age` = ? AND `profession` = ? ', [req.params.age, req.params.profession],(err, results, fields)=>{
         res.send(results);
     })
+    //res.send('respond with a resource from PERSONS');
 });
 
+//Create new person
 router.post('/', function(req, res, next) {
     var person = req.body;
-    connection.query("INSERT INTO persons SET ?" , [person], (err, results, fields) =>{
+    connection.query('INSERT INTO persons SET ?', [person], (err, results, fields)=>{
         res.send(results);
     })
+  
 });
 
 router.put('/:id', function(req, res, next) {
     var person = req.body;
-    var id = req.params.id;
-    connection.query("UPDATE persons SET ? WHERE id = ?" , [person, id], (err, results, fields) =>{
+    connection.query('UPDATE persons SET ? WHERE id = ?', [person, req.params.id], (err, results, fields)=>{
         if (err) {
-            res.status(500).end("Error while performing query.");
-        } else if (results.affectedRows == 0) {
-            res.status(400).end 
+            res.status(500).end("Error while perfoming query");
+        } else if(results.affectedRows == 0) {
+            res.status(404).end("ID not found.");
         }
-        res.send(results);
+        else{
+            res.send(results);
+        }
     })
+  
 });
+
+router.post
+
+// //request person through age
+// router.get('/:age', function(req, res, next) {
+//     connection.query('SELECT * FROM `persons` WHERE `age` = ?', [req.params.age], (err, results, fields)=>{
+//         res.send(results);
+//     })
+//     //res.send('respond with a resource from PERSONS');
+// });
+
 
 module.exports = router;
